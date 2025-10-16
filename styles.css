@@ -1,45 +1,70 @@
- 
-        /* Dark Mode Theme */
-        body {
-            background-color: #202124; /* Dark gray background */
-            color: #e8eaed; /* Light gray text for readability */
-            font-family: Arial, sans-serif;
-            padding: 15px;
-        }
+/* --- Modern Zoho-Style UI --- */
 
-        h1, h2 {
-            color: #023a8f;
-            border-bottom: 1px solid #3c4043; /* Subtle separator line */
-            padding-bottom: 8px;
-        }
+/* General Body Styles */
+body {
+    background-color: #f8f9fa; /* A clean, light gray background */
+    color: #495057; /* A soft, dark gray for text */
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse; /* Merges cell borders for a cleaner look */
-            margin-top: 20px;
-        }
+/* Header Styles */
+h1 {
+    font-size: 24px;
+    color: #212529;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
 
-        /* Table header and cell styles */
-        th, td {
-            border: 1px solid #3c4043; /* Lighter border for dark mode */
-            padding: 10px 12px; /* A bit more padding */
-            text-align: left;
-        }
-        
-        /* Table header specific styles */
-        th {
-            background-color: #303134; /* Slightly lighter background for header */
-            color: #bdc1c6;
-            font-weight: bold;
-        }
+/* Hide the old result/error headers */
+#result, #err {
+    display: none;
+}
 
-        /* Alternating row colors for better readability */
-        tr:nth-child(even) {
-            background-color: #282a2d;
-        }
-        
-        /* Style for the 'Key' column to make it stand out */
-        td:first-child {
-            font-weight: bold;
-            color: #8ab4f8; /* A light blue to highlight keys */
-        }
+
+/* --- The Card Layout Container --- */
+#details-container {
+    display: grid;
+    /* Create a responsive grid: 2 columns on wider screens, 1 on smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px; /* Spacing between cards */
+}
+
+
+/* --- Individual Field Card Styles --- */
+.field-card {
+    background-color: #ffffff; /* White background for cards */
+    border: 1px solid #dee2e6; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add a subtle lift effect on hover */
+.field-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* --- Field Label and Value Styles --- */
+.field-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6c757d; /* Muted color for the label */
+    margin-bottom: 5px;
+    text-transform: uppercase; /* e.g., "LAST_NAME" */
+    letter-spacing: 0.5px;
+}
+
+.field-value {
+    font-size: 16px;
+    color: #343a40; /* Darker color for the actual value */
+    word-wrap: break-word; /* Ensures long values don't break the layout */
+    min-height: 24px; /* Ensures consistent card height for empty values */
+}
