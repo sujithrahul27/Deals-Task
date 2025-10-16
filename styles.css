@@ -1,0 +1,45 @@
+ 
+        /* Dark Mode Theme */
+        body {
+            background-color: #202124; /* Dark gray background */
+            color: #e8eaed; /* Light gray text for readability */
+            font-family: Arial, sans-serif;
+            padding: 15px;
+        }
+
+        h1, h2 {
+            color: #e8eaed;
+            border-bottom: 1px solid #3c4043; /* Subtle separator line */
+            padding-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Merges cell borders for a cleaner look */
+            margin-top: 20px;
+        }
+
+        /* Table header and cell styles */
+        th, td {
+            border: 1px solid #3c4043; /* Lighter border for dark mode */
+            padding: 10px 12px; /* A bit more padding */
+            text-align: left;
+        }
+        
+        /* Table header specific styles */
+        th {
+            background-color: #303134; /* Slightly lighter background for header */
+            color: #bdc1c6;
+            font-weight: bold;
+        }
+
+        /* Alternating row colors for better readability */
+        tr:nth-child(even) {
+            background-color: #282a2d;
+        }
+        
+        /* Style for the 'Key' column to make it stand out */
+        td:first-child {
+            font-weight: bold;
+            color: #8ab4f8; /* A light blue to highlight keys */
+        }
