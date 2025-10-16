@@ -1,4 +1,4 @@
-console.log("Widget script initialized.");
+console.log("Widget script initialized. for the latest");
 
 ZOHO.embeddedApp.on("PageLoad", function(data) {
     document.getElementById("result").innerText = "Result : Loaded Successfully";
