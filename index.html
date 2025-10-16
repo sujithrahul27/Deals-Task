@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://live.zwidgets.com/js-sdk/1.2/ZohoEmbededAppSDK.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-    <title>All Fields</title>
+    <title>Record Details</title>
     
-   
+    <!-- Link to the Zoho SDK -->
+    <script src="https://live.zwidgets.com/js-sdk/1.2/ZohoEmbededAppSDK.min.js"></script>
+
+    <!-- Link to your new stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Example of internal hosting</h1>
-    <h2 id="result">Result : </h2>
-    <h2 id="err">Error : </h2>
-    <h2>Github Rendered</h2>
-    <table>
-            <thead>
-             <tr>
-                <th>Key</th>
-                <th>Value</th>
-             </tr>
-            </thead>
-            
-            <tbody id="table-body">
+    <h1>Record Details</h1>
+    
+    <!-- This single div will hold all our dynamically created cards -->
+    <div id="details-container">
+        <!-- The JavaScript will populate this area -->
+    </div>
+    
+    <!-- Hidden elements for script status (optional) -->
+    <h2 id="result" style="display:none;">Result : </h2>
+    <h2 id="err" style="display:none;">Error : </h2>
 
-            </tbody>
-        
-    </table>
+    <!-- Link to your script file at the end of the body -->
+    <script src="script.js"></script>
 </body>
-
 </html>

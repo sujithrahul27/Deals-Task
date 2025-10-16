@@ -1,46 +1,53 @@
+console.log("Widget script initialized.");
 
-    console.log("before try block inital load");
-    
-        console.log("try block is running");
-        ZOHO.embeddedApp.on("PageLoad",function(data){
-            document.getElementById("result").innerText += "Loaded Succcesfully";
-            console.log("page load works correct");
-            console.log(data);
-            ZOHO.CRM.API.getRecord({Entity:data.Entity,RecordID:data.EntityId})
-            .then(function(response){
-                console.log(response.data[0]);
-                var contact = response.data[0];
-                var tableBody = document.getElementById("table-body");
-                for(const [key, value] of Object.entries(contact)) {
-                    console.log("key : "+key);
-                    console.log("value : "+value);
-                    var row = document.createElement("tr");
-                    var keyCell = document.createElement("td");
-                    keyCell.textContent = key;
-                    var valueCell = document.createElement("td");
-                    
-                    
-                        valueCell.textContent = value || "N/A";
-                    
+ZOHO.embeddedApp.on("PageLoad", function(data) {
+    document.getElementById("result").innerText = "Result : Loaded Successfully";
 
-                    row.append(keyCell);
-                    row.append(valueCell);
-                    tableBody.append(row);
-                }
-                
+    ZOHO.CRM.API.getRecord({ Entity: data.Entity, RecordID: data.EntityId })
+    .then(function(response) {
+        const recordData = response.data[0];
+        const container = document.getElementById("details-container");
 
-            }).catch(function(error){
-                document.getElementById("err").innerText += error
-            });
-            console.log("promise has been skipped or neglecated");
-        })
-        console.log("no errors till init");
-    ZOHO.embeddedApp.init();
-        //console.log("try block executed sucesfull");
-    
+        // Clear any previous content from the container
+        container.innerHTML = '';
 
-    
-        //onsole.log("error has been ooccured");
-    
-    
-    console.log("programm executed sucessfully");
+        // Loop through each key-value pair in the record object
+        for (const [key, value] of Object.entries(recordData)) {
+
+            // --- Skip complex objects and internal fields for a cleaner UI ---
+            // You can customize this logic to display specific nested values if needed
+            if (typeof value === 'object' && value !== null || key.startsWith('$')) {
+                continue; // Skips the current iteration and moves to the next key
+            }
+
+            // 1. Create the main card container
+            const card = document.createElement("div");
+            card.className = "field-card";
+
+            // 2. Create the label element (for the key)
+            const label = document.createElement("span");
+            label.className = "field-label";
+            // Replace underscores with spaces for better readability
+            label.textContent = key.replace(/_/g, ' '); 
+
+            // 3. Create the value element
+            const valueSpan = document.createElement("span");
+            valueSpan.className = "field-value";
+            // Use a dash for null or empty values for a cleaner look
+            valueSpan.textContent = value || "N/A";
+
+            // 4. Append the label and value to the card
+            card.appendChild(label);
+            card.appendChild(valueSpan);
+
+            // 5. Append the completed card to the main container
+            container.appendChild(card);
+        }
+    }).catch(function(error) {
+        document.getElementById("err").innerText = "Error: " + JSON.stringify(error);
+        const container = document.getElementById("details-container");
+        container.innerHTML = '<p>Could not load record details. Please try again.</p>';
+    });
+});
+
+ZOHO.embeddedApp.init();
